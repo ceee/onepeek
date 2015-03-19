@@ -182,4 +182,4 @@ Development/*.js
 # =========================
 # Project
 # =========================
-resources/onebug/OneNote_RecycleBin/
+src/OnePeek.sln.ide/*
