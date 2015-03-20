@@ -2,14 +2,15 @@
     "version": "1.0.0-*",
     "dependencies": {
     },
-    "commands": { 
-        "run" : "run"
-    },
+
     "frameworks" : {
-        "aspnet50" : { },
+        "aspnet50" : { 
+            "dependencies": {
+            }
+        },
         "aspnetcore50" : { 
             "dependencies": {
-                "System.Console": "4.0.0-beta-22231"
+                "System.Runtime": "4.0.20-beta-22231"
             }
         }
     }
