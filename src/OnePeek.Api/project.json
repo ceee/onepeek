@@ -1,6 +1,7 @@
-﻿{
+{
     "version": "1.0.0-*",
     "dependencies": {
+        "OnePeek.Entities": "1.0.0-*"
     },
 
     "frameworks" : {
