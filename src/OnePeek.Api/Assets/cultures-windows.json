@@ -1,0 +1,436 @@
+﻿[
+  {
+    "id":"es-ar",
+    "uri":"http://windows.microsoft.com/es-ar/windows/home",
+    "name":"Argentina — Español",
+    "country":"Argentina",
+    "language":"Español"
+  },
+  {
+    "id":"fr-xf",
+    "uri":"http://windows.microsoft.com/fr-xf/windows/home",
+    "name":"Afrique du Nord — Français",
+    "country":"Afrique du Nord",
+    "language":"Français"
+  },
+  {
+    "id":"en-au",
+    "uri":"http://windows.microsoft.com/en-au/windows/home",
+    "name":"Australia — English",
+    "country":"Australia",
+    "language":"English"
+  },
+  {
+    "id":"nl-be",
+    "uri":"http://windows.microsoft.com/nl-be/windows/home",
+    "name":"België en Luxemburg — Nederlands",
+    "country":"België en Luxemburg",
+    "language":"Nederlands"
+  },
+  {
+    "id":"fr-be",
+    "uri":"http://windows.microsoft.com/fr-be/windows/home",
+    "name":"Belgique et Luxembourg — Français",
+    "country":"Belgique et Luxembourg",
+    "language":"Français"
+  },
+  {
+    "id":"pt-br",
+    "uri":"http://windows.microsoft.com/pt-br/windows/home",
+    "name":"Brasil — Português",
+    "country":"Brasil",
+    "language":"Português"
+  },
+  {
+    "id":"en-ca",
+    "uri":"http://windows.microsoft.com/en-ca/windows/home",
+    "name":"Canada — English",
+    "country":"Canada",
+    "language":"English"
+  },
+  {
+    "id":"fr-ca",
+    "uri":"http://windows.microsoft.com/fr-ca/windows/home",
+    "name":"Canada — Français",
+    "country":"Canada",
+    "language":"Français"
+  },
+  {
+    "id":"cs-cz",
+    "uri":"http://windows.microsoft.com/cs-cz/windows/home",
+    "name":"Česká Republika — Čeština",
+    "country":"Česká Republika",
+    "language":"Čeština"
+  },
+  {
+    "id":"es-cl",
+    "uri":"http://windows.microsoft.com/es-cl/windows/home",
+    "name":"Chile — Español",
+    "country":"Chile",
+    "language":"Español"
+  },
+  {
+    "id":"es-co",
+    "uri":"http://windows.microsoft.com/es-co/windows/home",
+    "name":"Colombia — Español",
+    "country":"Colombia",
+    "language":"Español"
+  },
+  {
+    "id":"da-dk",
+    "uri":"http://windows.microsoft.com/da-dk/windows/home",
+    "name":"Danmark — Dansk",
+    "country":"Danmark",
+    "language":"Dansk"
+  },
+  {
+    "id":"de-de",
+    "uri":"http://windows.microsoft.com/de-de/windows/home",
+    "name":"Deutschland — Deutsch",
+    "country":"Deutschland",
+    "language":"Deutsch"
+  },
+  {
+    "id":"et-ee",
+    "uri":"http://windows.microsoft.com/et-ee/windows/home",
+    "name":"Eesti — Eesti",
+    "country":"Eesti",
+    "language":"Eesti"
+  },
+  {
+    "id":"es-es",
+    "uri":"http://windows.microsoft.com/es-es/windows/home",
+    "name":"España — Español",
+    "country":"España",
+    "language":"Español"
+  },
+  {
+    "id":"fr-fr",
+    "uri":"http://windows.microsoft.com/fr-fr/windows/home",
+    "name":"France — Français",
+    "country":"France",
+    "language":"Français"
+  },
+  {
+    "id":"en-hk",
+    "uri":"http://windows.microsoft.com/en-hk/windows/home",
+    "name":"Hong Kong SAR — English",
+    "country":"Hong Kong SAR",
+    "language":"English"
+  },
+  {
+    "id":"hr-hr",
+    "uri":"http://windows.microsoft.com/hr-hr/windows/home",
+    "name":"Hrvatska — Hrvatski",
+    "country":"Hrvatska",
+    "language":"Hrvatski"
+  },
+  {
+    "id":"is-is",
+    "uri":"http://windows.microsoft.com/is-is/windows/home",
+    "name":"Ísland — Íslenska",
+    "country":"Ísland",
+    "language":"Íslenska"
+  },
+  {
+    "id":"en-in",
+    "uri":"http://windows.microsoft.com/en-in/windows/home",
+    "name":"India — English",
+    "country":"India",
+    "language":"English"
+  },
+  {
+    "id":"en-id",
+    "uri":"http://windows.microsoft.com/en-id/windows/home",
+    "name":"Indonesia — English",
+    "country":"Indonesia",
+    "language":"English"
+  },
+  {
+    "id":"en-ie",
+    "uri":"http://windows.microsoft.com/en-ie/windows/home",
+    "name":"Ireland — English",
+    "country":"Ireland",
+    "language":"English"
+  },
+  {
+    "id":"it-it",
+    "uri":"http://windows.microsoft.com/it-it/windows/home",
+    "name":"Italia — Italiano",
+    "country":"Italia",
+    "language":"Italiano"
+  },
+  {
+    "id":"es-xl",
+    "uri":"http://windows.microsoft.com/es-xl/windows/home",
+    "name":"Latinoamérica — Español",
+    "country":"Latinoamérica",
+    "language":"Español"
+  },
+  {
+    "id":"lv-lv",
+    "uri":"http://windows.microsoft.com/lv-lv/windows/home",
+    "name":"Latvija — Latviešu",
+    "country":"Latvija",
+    "language":"Latviešu"
+  },
+  {
+    "id":"lt-lt",
+    "uri":"http://windows.microsoft.com/lt-lt/windows/home",
+    "name":"Lietuva — Lietuvių",
+    "country":"Lietuva",
+    "language":"Lietuvių"
+  },
+  {
+    "id":"hu-hu",
+    "uri":"http://windows.microsoft.com/hu-hu/windows/home",
+    "name":"Magyarország — Magyar",
+    "country":"Magyarország",
+    "language":"Magyar"
+  },
+  {
+    "id":"en-my",
+    "uri":"http://windows.microsoft.com/en-my/windows/home",
+    "name":"Malaysia — English",
+    "country":"Malaysia",
+    "language":"English"
+  },
+  {
+    "id":"es-mx",
+    "uri":"http://windows.microsoft.com/es-mx/windows/home",
+    "name":"México — Español",
+    "country":"México",
+    "language":"Español"
+  },
+  {
+    "id":"nl-nl",
+    "uri":"http://windows.microsoft.com/nl-nl/windows/home",
+    "name":"Nederland — Nederlands",
+    "country":"Nederland",
+    "language":"Nederlands"
+  },
+  {
+    "id":"en-nz",
+    "uri":"http://windows.microsoft.com/en-nz/windows/home",
+    "name":"New Zealand — English",
+    "country":"New Zealand",
+    "language":"English"
+  },
+  {
+    "id":"nb-no",
+    "uri":"http://windows.microsoft.com/nb-no/windows/home",
+    "name":"Norge — Norsk (Bokmål)",
+    "country":"Norge",
+    "language":"Norsk (Bokmål)"
+  },
+  {
+    "id":"de-at",
+    "uri":"http://windows.microsoft.com/de-at/windows/home",
+    "name":"Österreich — Deutsch",
+    "country":"Österreich",
+    "language":"Deutsch"
+  },
+  {
+    "id":"en-ph",
+    "uri":"http://windows.microsoft.com/en-ph/windows/home",
+    "name":"Philippines — English",
+    "country":"Philippines",
+    "language":"English"
+  },
+  {
+    "id":"pl-pl",
+    "uri":"http://windows.microsoft.com/pl-pl/windows/home",
+    "name":"Polska — Polski",
+    "country":"Polska",
+    "language":"Polski"
+  },
+  {
+    "id":"pt-pt",
+    "uri":"http://windows.microsoft.com/pt-pt/windows/home",
+    "name":"Portugal — português",
+    "country":"Portugal",
+    "language":"português"
+  },
+  {
+    "id":"sr-latn-cs",
+    "uri":"http://windows.microsoft.com/sr-latn-cs/windows/home",
+    "name":"Republika Srbija — Srpski",
+    "country":"Republika Srbija",
+    "language":"Srpski"
+  },
+  {
+    "id":"ro-ro",
+    "uri":"http://windows.microsoft.com/ro-ro/windows/home",
+    "name":"România — Română",
+    "country":"România",
+    "language":"Română"
+  },
+  {
+    "id":"de-ch",
+    "uri":"http://windows.microsoft.com/de-ch/windows/home",
+    "name":"Schweiz — Deutsch",
+    "country":"Schweiz",
+    "language":"Deutsch"
+  },
+  {
+    "id":"en-sg",
+    "uri":"http://windows.microsoft.com/en-sg/windows/home",
+    "name":"Singapore — English",
+    "country":"Singapore",
+    "language":"English"
+  },
+  {
+    "id":"sl-si",
+    "uri":"http://windows.microsoft.com/sl-si/windows/home",
+    "name":"Slovenija — Slovenski",
+    "country":"Slovenija",
+    "language":"Slovenski"
+  },
+  {
+    "id":"sk-sk",
+    "uri":"http://windows.microsoft.com/sk-sk/windows/home",
+    "name":"Slovenská Republika — Slovenčina",
+    "country":"Slovenská Republika",
+    "language":"Slovenčina"
+  },
+  {
+    "id":"en-za",
+    "uri":"http://windows.microsoft.com/en-za/windows/home",
+    "name":"South Africa — English",
+    "country":"South Africa",
+    "language":"English"
+  },
+  {
+    "id":"fr-ch",
+    "uri":"http://windows.microsoft.com/fr-ch/windows/home",
+    "name":"Suisse — Français",
+    "country":"Suisse",
+    "language":"Français"
+  },
+  {
+    "id":"fi-fi",
+    "uri":"http://windows.microsoft.com/fi-fi/windows/home",
+    "name":"Suomi — Suomi",
+    "country":"Suomi",
+    "language":"Suomi"
+  },
+  {
+    "id":"sv-se",
+    "uri":"http://windows.microsoft.com/sv-se/windows/home",
+    "name":"Sverige — Svenska",
+    "country":"Sverige",
+    "language":"Svenska"
+  },
+  {
+    "id":"tr-tr",
+    "uri":"http://windows.microsoft.com/tr-tr/windows/home",
+    "name":"Türkiye — Türkçe",
+    "country":"Türkiye",
+    "language":"Türkçe"
+  },
+  {
+    "id":"en-gb",
+    "uri":"http://windows.microsoft.com/en-gb/windows/home",
+    "name":"United Kingdom — English",
+    "country":"United Kingdom",
+    "language":"English"
+  },
+  {
+    "id":"en-us",
+    "uri":"http://windows.microsoft.com/en-us/windows/home",
+    "name":"United States — English",
+    "country":"United States",
+    "language":"English"
+  },
+  {
+    "id":"vi-vn",
+    "uri":"http://windows.microsoft.com/vi-vn/windows/home",
+    "name":"Việt Nam — Tiếng Việt",
+    "country":"Việt Nam",
+    "language":"Tiếng Việt"
+  },
+  {
+    "id":"el-gr",
+    "uri":"http://windows.microsoft.com/el-gr/windows/home",
+    "name":"Ελλάδα — Ελληνικά",
+    "country":"Ελλάδα",
+    "language":"Ελληνικά"
+  },
+  {
+    "id":"bg-bg",
+    "uri":"http://windows.microsoft.com/bg-bg/windows/home",
+    "name":"България — Български",
+    "country":"България",
+    "language":"Български"
+  },
+  {
+    "id":"ru-ru",
+    "uri":"http://windows.microsoft.com/ru-ru/windows/home",
+    "name":"Россия — Русский",
+    "country":"Россия",
+    "language":"Русский"
+  },
+  {
+    "id":"uk-ua",
+    "uri":"http://windows.microsoft.com/uk-ua/windows/home",
+    "name":"Україна — Українська",
+    "country":"Україна",
+    "language":"Українська"
+  },
+  {
+    "id":"he-il",
+    "uri":"http://windows.microsoft.com/he-il/windows/home",
+    "name":"ישראל‫ — עברית",
+    "country":"ישראל‫",
+    "language":"עברית"
+  },
+  {
+    "id":"ar-xm",
+    "uri":"http://windows.microsoft.com/ar-xm/windows/home",
+    "name":"الشرق الأوسط — العربية‫",
+    "country":"الشرق الأوسط",
+    "language":"العربية‫"
+  },
+  {
+    "id":"th-th",
+    "uri":"http://windows.microsoft.com/th-th/windows/home",
+    "name":"ไทย — ไทย",
+    "country":"ไทย",
+    "language":"ไทย"
+  },
+  {
+    "id":"ko-kr",
+    "uri":"http://windows.microsoft.com/ko-kr/windows/home",
+    "name":"대한민국 — 한국어",
+    "country":"대한민국",
+    "language":"한국어"
+  },
+  {
+    "id":"zh-cn",
+    "uri":"http://windows.microsoft.com/zh-cn/windows/home",
+    "name":"中国 — 中文(简体)",
+    "country":"中国",
+    "language":"中文(简体)"
+  },
+  {
+    "id":"zh-tw",
+    "uri":"http://windows.microsoft.com/zh-tw/windows/home",
+    "name":"台灣 — 中文(繁體)",
+    "country":"台灣",
+    "language":"中文(繁體)"
+  },
+  {
+    "id":"zh-hk",
+    "uri":"http://windows.microsoft.com/zh-hk/windows/home",
+    "name":"香港特別行政區 — 中文(繁體)",
+    "country":"香港特別行政區",
+    "language":"中文(繁體)"
+  },
+  {
+    "id":"ja-jp",
+    "uri":"http://windows.microsoft.com/ja-jp/windows/home",
+    "name":"日本 — 日本語",
+    "country":"日本",
+    "language":"日本語"
+  }
+]
