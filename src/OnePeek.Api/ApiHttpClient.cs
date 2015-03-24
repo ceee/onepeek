@@ -33,7 +33,7 @@ namespace OnePeek.Api
 
     public void Dispose()
     {
-      throw new NotImplementedException();
+      httpClient.Dispose();
     }
   }
 }
