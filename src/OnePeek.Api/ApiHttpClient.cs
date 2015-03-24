@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 
 namespace OnePeek.Api
 {
@@ -7,22 +9,22 @@ namespace OnePeek.Api
   /// </summary>
   internal class ApiHttpClient : IDisposable
   {
-    internal static ApiHttpClient _instance = null;
+    internal static ApiHttpClient instance = null;
 
     /// <summary>
     /// Get Singleton of ApiHttpCient
     /// </summary>
-    internal static ApiHttpClient Instance { get { return _instance ?? (_instance = new ApiHttpClient()); } }
+    internal static ApiHttpClient Instance { get { return instance ?? (instance = new ApiHttpClient()); } }
 
     /// <summary>
     /// Client for HTTP communication
     /// </summary>
-    protected readonly HttpClient _restClient;
+    protected readonly HttpClient httpClient;
 
 
     public ApiHttpClient()
     {
-      HttpClient = new HttpClient(handler ?? new HttpClientHandler()
+      httpClient = new HttpClient(new HttpClientHandler()
       {
         AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
       });
