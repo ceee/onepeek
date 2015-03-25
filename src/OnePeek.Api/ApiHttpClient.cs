@@ -9,7 +9,7 @@ namespace OnePeek.Api
   /// </summary>
   internal class ApiHttpClient : IDisposable
   {
-    internal static ApiHttpClient instance = null;
+    private static ApiHttpClient instance = null;
 
     /// <summary>
     /// Get Singleton of ApiHttpCient
@@ -19,7 +19,7 @@ namespace OnePeek.Api
     /// <summary>
     /// Client for HTTP communication
     /// </summary>
-    protected readonly HttpClient httpClient;
+    private readonly HttpClient httpClient;
 
 
     public ApiHttpClient()

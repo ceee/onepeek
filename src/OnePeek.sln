@@ -4,6 +4,8 @@ VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnePeek.Api", "OnePeek.Api\OnePeek.Api.csproj", "{843AAC40-1D0F-49D1-A6E1-CF6B7A5DB7EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnePeek.Entities", "OnePeek.Entities\OnePeek.Entities.csproj", "{D45D6378-3ED0-4445-94FE-21F62C1DF4E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,10 @@ Global
 		{843AAC40-1D0F-49D1-A6E1-CF6B7A5DB7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{843AAC40-1D0F-49D1-A6E1-CF6B7A5DB7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{843AAC40-1D0F-49D1-A6E1-CF6B7A5DB7EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D45D6378-3ED0-4445-94FE-21F62C1DF4E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D45D6378-3ED0-4445-94FE-21F62C1DF4E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D45D6378-3ED0-4445-94FE-21F62C1DF4E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D45D6378-3ED0-4445-94FE-21F62C1DF4E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
