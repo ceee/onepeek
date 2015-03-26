@@ -8,7 +8,7 @@ namespace OnePeek.Api
 {
   internal static class EndpointUris
   {
-    public const string WINDOWSPHONE_IMAGE_URI = "http://cdn.marketplaceimages.windowsphone.com/v8/images/{0}?imageType=ws_icon_large";
+    public const string WINDOWSPHONE_IMAGE_URI = "http://cdn.marketplaceimages.windowsphone.com/v8/images/{0}?imageType={1}";
 
     public const string WINDOWSPHONE_METADATA_URI = "http://marketplaceedgeservice.windowsphone.com/v9/catalog/apps/{0}?os=8.10.14219.0&cc={1}&lang={2}";
 
@@ -23,9 +23,9 @@ namespace OnePeek.Api
 
 
 
-    internal static Uri GetWindowsPhoneImageUri(string urn)
+    internal static Uri GetWindowsPhoneImageUri(string urn, string type)
     {
-      return Uri(WINDOWSPHONE_IMAGE_URI, urn.Replace("urn:uuid:", ""));
+      return Uri(WINDOWSPHONE_IMAGE_URI, urn.Replace("urn:uuid:", ""), type);
     }
 
 

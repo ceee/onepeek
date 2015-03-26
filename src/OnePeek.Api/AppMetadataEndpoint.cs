@@ -1,5 +1,6 @@
 ﻿using Bender;
 using OnePeek.Entities;
+using OnePeek.Api.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,9 +38,10 @@ namespace OnePeek.Api
     }
 
 
-    public Uri GetImageUri(string urn)
+    public Uri GetImageUri(string urn, StoreScreenshotType screenshotType)
     {
-      return EndpointUris.GetWindowsPhoneImageUri(urn);
+      string type = screenshotType.GetEnumDisplayName();
+      return EndpointUris.GetWindowsPhoneImageUri(urn, type);
     }
   }
 }
