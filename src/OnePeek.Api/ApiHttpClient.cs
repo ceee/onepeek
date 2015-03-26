@@ -29,6 +29,7 @@ namespace OnePeek.Api
       {
         AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
       });
+      httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2327.5 Safari/537.36 OPR/30.0.1812.0 (Edition developer)");
     }
 
 
