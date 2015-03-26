@@ -2,6 +2,7 @@
 using OnePeek.Entities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,24 @@ namespace OnePeek.Api
         EndpointUris.GetWindowsPhoneMetadataUri(appId, storeCulture.ToString())
       );
 
-      AppMetadata result = Deserialize.Xml<AppMetadata>(xml);
+      try
+      {
+        AppMetadata result = Deserialize.Xml<AppMetadata>(xml);
+        result.Id = appId;
+        return result;
+      }
+      catch (Exception exc)
+      {
+        Debug.WriteLine(exc.Message);
+      }
 
-      return result;
+      return null;
+    }
+
+
+    public Uri GetImageUri(string urn)
+    {
+      return EndpointUris.GetWindowsPhoneImageUri(urn);
     }
   }
 }
