@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bender.Configuration;
+using System.IO;
 
 namespace OnePeek.Api
 {
@@ -42,6 +44,14 @@ namespace OnePeek.Api
     {
       string type = screenshotType.GetEnumDisplayName();
       return EndpointUris.GetWindowsPhoneImageUri(urn, type);
+    }
+
+
+    public async Task<Stream> GetImageAsStream(string urn, StoreScreenshotType screenshotType)
+    {
+      string type = screenshotType.GetEnumDisplayName();
+      Uri uri = EndpointUris.GetWindowsPhoneImageUri(urn, type);
+      return await ApiHttpClient.Instance.GetStream(uri);
     }
   }
 }

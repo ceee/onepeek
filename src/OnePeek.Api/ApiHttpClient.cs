@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -40,6 +41,16 @@ namespace OnePeek.Api
     {
       HttpResponseMessage responseMessage = await httpClient.GetAsync(uri);
       return await responseMessage.Content.ReadAsStringAsync();
+    }
+
+
+    /// <summary>
+    /// HTTP GET request (as stream) to the specified uri
+    /// </summary>
+    public async Task<Stream> GetStream(Uri uri)
+    {
+      HttpResponseMessage responseMessage = await httpClient.GetAsync(uri);
+      return await responseMessage.Content.ReadAsStreamAsync();
     }
 
 
