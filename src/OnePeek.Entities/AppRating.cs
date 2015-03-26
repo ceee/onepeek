@@ -4,15 +4,16 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace OnePeek.Entities
 {
   public class AppRating
   {
-    [DataMember(Name = "averageuserrating")]
+    [XmlElement("averageuserrating")]
     public float AverageRating { get; set; }
 
-    [DataMember(Name = "userratingcount")]
+    [XmlElement("userratingcount")]
     public int RatingCount { get; set; }
   }
 }

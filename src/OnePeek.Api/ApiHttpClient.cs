@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace OnePeek.Api
 {
@@ -28,6 +29,16 @@ namespace OnePeek.Api
       {
         AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
       });
+    }
+
+
+    /// <summary>
+    /// HTTP GET request to the specified uri
+    /// </summary>
+    public async Task<string> Get(Uri uri)
+    {
+      HttpResponseMessage responseMessage = await httpClient.GetAsync(uri);
+      return await responseMessage.Content.ReadAsStringAsync();
     }
 
 

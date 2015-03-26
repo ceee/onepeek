@@ -10,7 +10,6 @@ namespace OnePeek.Api
   {
     public ApiBase()
     {
-      
     }
   }
 }
