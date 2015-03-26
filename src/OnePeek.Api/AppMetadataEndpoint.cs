@@ -1,14 +1,10 @@
 ﻿using Bender;
-using OnePeek.Entities;
 using OnePeek.Api.Extensions;
+using OnePeek.Entities;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bender.Configuration;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace OnePeek.Api
 {
@@ -40,16 +36,18 @@ namespace OnePeek.Api
     }
 
 
-    public Uri GetImageUri(string urn, StoreScreenshotType screenshotType)
+
+    public Uri GetImageUri(string urn, StoreImageType imageType = StoreImageType.None)
     {
-      string type = screenshotType.GetEnumDisplayName();
+      string type = imageType.GetEnumDisplayName();
       return EndpointUris.GetWindowsPhoneImageUri(urn, type);
     }
 
 
-    public async Task<Stream> GetImageAsStream(string urn, StoreScreenshotType screenshotType)
+
+    public async Task<Stream> GetImageAsStream(string urn, StoreImageType imageType = StoreImageType.None)
     {
-      string type = screenshotType.GetEnumDisplayName();
+      string type = imageType.GetEnumDisplayName();
       Uri uri = EndpointUris.GetWindowsPhoneImageUri(urn, type);
       return await ApiHttpClient.Instance.GetStream(uri);
     }

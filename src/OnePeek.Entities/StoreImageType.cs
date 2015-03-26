@@ -2,8 +2,9 @@
 
 namespace OnePeek.Entities
 {
-  public enum StoreScreenshotType
+  public enum StoreImageType
   {
+    None,
     [Display(Name = "ws_icon_large")]
     Logo,
     [Display(Name = "ws_screenshot_small")]
