@@ -5,6 +5,8 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace OnePeek.Api
 {
@@ -23,6 +25,8 @@ namespace OnePeek.Api
 
       try
       {
+        //string entryXml = XDocument.Parse(xml).Descendants().FirstOrDefault(x => x.Name.LocalName == "entry").ToString();
+
         AppMetadata result = Deserialize.Xml<AppMetadata>(xml);
         result.Id = appId;
         return result;
