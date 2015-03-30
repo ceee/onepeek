@@ -40,10 +40,12 @@
     <Compile Include="AppMetadata.cs" />
     <Compile Include="AppPublisher.cs" />
     <Compile Include="AppRating.cs" />
+    <Compile Include="AppReviews.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoreCulture.cs" />
     <Compile Include="StoreCultureType.cs" />
     <Compile Include="StoreImageType.cs" />
+    <Compile Include="StoreReviewSorting.cs" />
     <Compile Include="StoreType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

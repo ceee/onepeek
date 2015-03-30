@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 
 namespace OnePeek.Entities
 {
+  [XmlRoot("feed")]
   public class AppReviews
   {
     public string Id { get; set; }
