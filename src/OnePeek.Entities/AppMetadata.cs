@@ -33,7 +33,7 @@ namespace OnePeek.Entities
 
     public AppRating Rating { get; set; }
 
-    [XmlElement("isUniversal")]
+    [XmlElement("isuniversal")]
     public bool IsUniversal { get; set; }
   }
 
