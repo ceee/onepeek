@@ -8,6 +8,8 @@ namespace OnePeek.Api
 
     public const string WINDOWSPHONE_METADATA_URI = "http://marketplaceedgeservice.windowsphone.com/v9/catalog/apps/{0}?os=8.10.14219.0&cc={1}&lang={2}";
 
+    public const string WINDOWSPHONE_REVIEWS_URI = "http://marketplaceedgeservice.windowsphone.com/v9/ratings/product/{0}/reviews?os=8.10.14219.0&cc={1}&lang={2}&dm=RM-1045_1012&chunksize=20&skuId=c1424839-be1e-40eb-8bc3-b2730db30b62&orderBy={3}";
+
 
 
     internal static Uri GetWindowsPhoneMetadataUri(string appId, string culture)
@@ -22,6 +24,15 @@ namespace OnePeek.Api
     internal static Uri GetWindowsPhoneImageUri(string urn, string type)
     {
       return Uri(WINDOWSPHONE_IMAGE_URI, urn.Replace("urn:uuid:", "") + (!String.IsNullOrWhiteSpace(type) ? "?imageType=" + type : ""));
+    }
+
+
+
+    internal static Uri GetWindowsPhoneReviewsUri(string appId, string culture, string orderBy)
+    {
+      culture = culture.Replace('_', '-');
+      string country = culture.Split('-')[1];
+      return Uri(WINDOWSPHONE_REVIEWS_URI, appId, country, culture, orderBy);
     }
 
 
