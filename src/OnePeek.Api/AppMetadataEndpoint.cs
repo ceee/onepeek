@@ -7,6 +7,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Linq;
+using System.Globalization;
+using System.Collections.Generic;
 
 namespace OnePeek.Api
 {
@@ -23,20 +25,36 @@ namespace OnePeek.Api
         EndpointUris.GetWindowsPhoneMetadataUri(appId, storeCulture.ToString())
       );
 
-      try
-      {
-        //string entryXml = XDocument.Parse(xml).Descendants().FirstOrDefault(x => x.Name.LocalName == "entry").ToString();
+      IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
 
-        AppMetadata result = Deserialize.Xml<AppMetadata>(xml);
-        result.Id = appId;
-        return result;
-      }
-      catch (Exception exc)
-      {
-        Debug.WriteLine(exc.Message);
-      }
+      // create metadatas
+      AppMetadata result = Deserialize.Xml<AppMetadata>(xml);
+      result.Id = appId;
+      result.StoreType = store;
+      result.StoreCultureType = storeCulture;
 
-      return null;
+      // create publisher
+      result.Publisher = Deserialize.Xml<AppPublisher>(xml);
+      result.Publisher.Id = result.Publisher.Urn.Split(':').LastOrDefault();
+
+      // create rating
+      result.Rating = Deserialize.Xml<AppRating>(xml);
+      result.Rating.AverageRating = xel.GetFloat("averageUserRating");
+
+      // create images
+      result.Images = Deserialize.Xml<AppMetadataImages>(xml);
+      result.Images.Cleanup();
+      result.Images.Screenshots = xel.Where(x => x.Name.LocalName == "screenshot").Select(x =>
+      {
+        IEnumerable<XElement> childs = x.Descendants();
+        return new AppImage()
+        { 
+          Urn = childs.Get("id"),
+          Rotation = childs.GetShort("orientation")
+        };
+      });
+
+      return result;
     }
 
 

@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace OnePeek.Entities
 {
   [XmlRoot("feed")]
-  public class AppReviews
+  public partial class AppReviews
   {
     public string Id { get; set; }
 
@@ -29,7 +29,7 @@ namespace OnePeek.Entities
   }
 
 
-  public class AppReview
+  public partial class AppReview
   {
     public DateTime CreatedDate { get; set; }
 

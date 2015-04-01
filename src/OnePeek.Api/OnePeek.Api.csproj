@@ -47,6 +47,7 @@
     <Compile Include="AppRatingEndpoint.cs" />
     <Compile Include="EndpointUris.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

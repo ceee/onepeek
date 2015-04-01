@@ -1,4 +1,5 @@
 ﻿using Nancy;
+using OnePeek.Api;
 using OnePeek.Entities;
 using System.IO;
 
@@ -8,8 +9,8 @@ namespace OnePeek.WebConsole
   {
     public HomeModule()
     {
-      var ratingEndpoint = new Api.AppRatingEndpoint();
-      var metaEndpoint = new Api.AppMetadataEndpoint();
+      AppRatingEndpoint ratingEndpoint = new AppRatingEndpoint();
+      AppMetadataEndpoint metaEndpoint = new AppMetadataEndpoint();
 
 
       Get["/meta/{id?2532ff45-aa3f-4aba-a266-ed7ec71d47bd}", true] = async (ctx, token) =>

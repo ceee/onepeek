@@ -1,20 +1,19 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace OnePeek.Entities
 {
+  [XmlRoot("feed")]
   public class AppPublisher
   {
-    [XmlElement("publisherid")]
     public string Id { get; set; }
 
-    [XmlElement("publisherguid")]
-    public string Uid { get; set; }
+    [XmlElement("publisherGuid")]
+    public string Urn { get; set; }
 
     [XmlElement("publisher")]
     public string Name { get; set; }
 
-    [XmlElement("publisherurl")]
-    public Uri Url { get; set; }
+    [XmlElement("publisherUrl")]
+    public string Uri { get; set; }
   }
 }
