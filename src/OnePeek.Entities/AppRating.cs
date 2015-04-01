@@ -3,7 +3,7 @@
 namespace OnePeek.Entities
 {
   [XmlRoot("feed")]
-  public class AppRating
+  public partial class AppRating
   {
     public float AverageRating { get; set; }
 

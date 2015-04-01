@@ -3,7 +3,7 @@
 namespace OnePeek.Entities
 {
   [XmlRoot("feed")]
-  public class AppPublisher
+  public partial class AppPublisher
   {
     public string Id { get; set; }
 

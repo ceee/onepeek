@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace OnePeek.Entities
 {
-  public class AppImage
+  public partial class AppImage
   {
     public string Id { get { return !String.IsNullOrWhiteSpace(Urn) ? Urn.Split(':').LastOrDefault() : null; } }
 

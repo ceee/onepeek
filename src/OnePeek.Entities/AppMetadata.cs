@@ -52,7 +52,7 @@ namespace OnePeek.Entities
   }
 
   [XmlRoot("feed")]
-  public class AppMetadataImages
+  public partial class AppMetadataImages
   {
     [XmlElement("image")]
     public AppImage Logo { get; set; }
