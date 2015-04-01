@@ -5,9 +5,9 @@ using System.IO;
 
 namespace OnePeek.WebConsole
 {
-  public class HomeModule : NancyModule
+  public class ApiModule : NancyModule
   {
-    public HomeModule()
+    public ApiModule() : base("api/")
     {
       AppRatingEndpoint ratingEndpoint = new AppRatingEndpoint();
       AppMetadataEndpoint metaEndpoint = new AppMetadataEndpoint();
