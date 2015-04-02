@@ -45,6 +45,7 @@
     <Compile Include="ApiHttpClient.cs" />
     <Compile Include="AppMetadataEndpoint.cs" />
     <Compile Include="AppRatingEndpoint.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="EndpointUris.cs" />
     <Compile Include="Extensions\EntityExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />

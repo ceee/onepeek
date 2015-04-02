@@ -26,17 +26,18 @@ namespace OnePeek.Api
 
       IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
 
-      AppReviews result = Deserialize.Xml<AppReviews>(xml);
+      AppReviews result = new AppReviews();
       result.Id = appId;
       result.StoreType = store;
       result.StoreCultureType = storeCulture;
       result.Sorting = sorting;
+      result.StoreDataModifiedDate = DateTime.Parse(xel.Get("updated"));
 
       // parse markers
       result.PrevPageMarkerId = Utils.GetQueryPart(xel.FirstOrDefault(x => x.Name.LocalName == "link" && x.Attribute("rel").Value == "prev"), "href", "beforeMarker");
       result.NextPageMarkerId = Utils.GetQueryPart(xel.FirstOrDefault(x => x.Name.LocalName == "link" && x.Attribute("rel").Value == "next"), "href", "afterMarker");
 
-      // create images
+      // append reviews
       result.Reviews = xel.Where(x => x.Name.LocalName == "entry").Select(x =>
       {
         IEnumerable<XElement> childs = x.Descendants();
