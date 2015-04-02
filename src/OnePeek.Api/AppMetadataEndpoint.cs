@@ -2,12 +2,10 @@
 using OnePeek.Api.Extensions;
 using OnePeek.Entities;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Linq;
-using System.Globalization;
 using System.Collections.Generic;
 
 namespace OnePeek.Api
@@ -40,6 +38,10 @@ namespace OnePeek.Api
       // create rating
       result.Rating = Deserialize.Xml<AppRating>(xml);
       result.Rating.AverageRating = xel.GetFloat("averageUserRating");
+      if (Configuration.UseFiveStarSystem)
+      {
+        result.Rating.AverageRating = (float)(result.Rating.AverageRating * 0.5);
+      }
 
       // create images
       result.Images = Deserialize.Xml<AppMetadataImages>(xml);
