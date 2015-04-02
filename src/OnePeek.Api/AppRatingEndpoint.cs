@@ -1,13 +1,10 @@
-﻿using Bender;
-using OnePeek.Api.Extensions;
+﻿using OnePeek.Api.Extensions;
 using OnePeek.Entities;
 using System;
-using System.Diagnostics;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace OnePeek.Api
 {
@@ -26,12 +23,14 @@ namespace OnePeek.Api
 
       IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
 
-      AppReviews result = new AppReviews();
-      result.Id = appId;
-      result.StoreType = store;
-      result.StoreCultureType = storeCulture;
-      result.Sorting = sorting;
-      result.StoreDataModifiedDate = DateTime.Parse(xel.Get("updated"));
+      AppReviews result = new AppReviews()
+      {
+        Id = appId,
+        StoreType = store,
+        StoreCultureType = storeCulture,
+        Sorting = sorting,
+        StoreDataModifiedDate = DateTime.Parse(xel.Get("updated"))
+      };
 
       // parse markers
       result.PrevPageMarkerId = Utils.GetQueryPart(xel.FirstOrDefault(x => x.Name.LocalName == "link" && x.Attribute("rel").Value == "prev"), "href", "beforeMarker");
