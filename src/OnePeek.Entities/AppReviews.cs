@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace OnePeek.Entities
@@ -25,24 +22,32 @@ namespace OnePeek.Entities
 
     public string NextPageMarkerId { get; set; }
 
-    public List<AppReview> Reviews { get; set; }
+    public IEnumerable<AppReview> Reviews { get; set; }
   }
 
 
+  [XmlRoot("entry")]
   public partial class AppReview
   {
-    public DateTime CreatedDate { get; set; }
-
-    public string Author { get; set; }
-
-    public string Text { get; set; }
-
-    public float Rating { get; set; }
-
+    [XmlElement("reviewId")]
     public string Id { get; set; }
 
+    [XmlElement("updated")]
+    public DateTime CreatedDate { get; set; }
+
+    [XmlElement("name")]
+    public string Author { get; set; }
+
+    [XmlElement("content")]
+    public string Text { get; set; }
+
+    [XmlElement("userRating")]
+    public byte Rating { get; set; }
+
+    [XmlElement("device")]
     public string Device { get; set; }
 
+    [XmlElement("productVersion")]
     public string AppVersion { get; set; } 
   }
 }

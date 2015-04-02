@@ -1,4 +1,5 @@
 ﻿using Nancy;
+using Nancy.Responses;
 using OnePeek.Api;
 using OnePeek.Entities;
 using System.IO;
@@ -17,6 +18,7 @@ namespace OnePeek.WebConsole
       {
         AppMetadata meta = await metaEndpoint.GetMetadata(ctx.id, StoreType.WindowsPhone8, StoreCultureType.EN_US);
         return Response.AsJson(meta);
+        //return new JsonResponse(ctx)
       };
 
 
