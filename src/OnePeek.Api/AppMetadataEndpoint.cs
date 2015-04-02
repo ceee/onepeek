@@ -50,7 +50,7 @@ namespace OnePeek.Api
       {
         IEnumerable<XElement> childs = x.Descendants();
         return new AppImage()
-        { 
+        {
           Urn = childs.Get("id"),
           Rotation = childs.GetShort("orientation")
         };
@@ -74,6 +74,13 @@ namespace OnePeek.Api
       string type = imageType.GetEnumDisplayName();
       Uri uri = EndpointUris.GetWindowsPhoneImageUri(urn, type);
       return await ApiHttpClient.Instance.GetStream(uri);
+    }
+
+
+
+    public async Task<Dictionary<StoreCultureType, IEnumerable<AppMetadata>>> GetMetadataForAllCultures(string appId, StoreType store)
+    {
+      throw new NotImplementedException();
     }
   }
 }
