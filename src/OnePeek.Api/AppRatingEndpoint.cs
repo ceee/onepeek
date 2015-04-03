@@ -10,6 +10,14 @@ namespace OnePeek.Api
 {
   public class AppRatingEndpoint : ApiBase
   {
+    /// <summary>
+    /// Get a list of reviews (up to 20 per request) for the specified app.
+    /// </summary>
+    /// <param name="appId">The ID of the app. Can be found in the dev portal or the store URI.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
+    /// <param name="sorting">Sorting criteria.</param>
+    /// <returns></returns>
     public async Task<AppReviews> GetReviews(string appId, StoreType store, StoreCultureType storeCulture, StoreReviewSorting sorting)
     {
       if (storeCulture == StoreCultureType.Unknown)

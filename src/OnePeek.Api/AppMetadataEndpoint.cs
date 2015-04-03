@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace OnePeek.Api
 {
   public class AppMetadataEndpoint : ApiBase
   {
+    /// <summary>
+    /// Get app description, images, publisher, rating and more for an app in the specified culture.
+    /// </summary>
+    /// <param name="appId">The ID of the app. Can be found in the dev portal or the store URI.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
+    /// <returns></returns>
     public async Task<AppMetadata> GetMetadata(string appId, StoreType store, StoreCultureType storeCulture)
     {
       if (storeCulture == StoreCultureType.Unknown)
@@ -61,6 +69,12 @@ namespace OnePeek.Api
 
 
 
+    /// <summary>
+    /// Creates an URI from an image urn (included in the AppImage POCO).
+    /// </summary>
+    /// <param name="urn">The urn (is part of the AppImage).</param>
+    /// <param name="imageType">Crops the image accordingly.</param>
+    /// <returns></returns>
     public Uri GetImageUri(string urn, StoreImageType imageType = StoreImageType.None)
     {
       string type = imageType.GetEnumDisplayName();
@@ -69,6 +83,12 @@ namespace OnePeek.Api
 
 
 
+    /// <summary>
+    /// Returns a stream for a store image.
+    /// </summary>
+    /// <param name="urn">The urn (is part of the AppImage).</param>
+    /// <param name="imageType">Crops the image accordingly.</param>
+    /// <returns></returns>
     public async Task<Stream> GetImageAsStream(string urn, StoreImageType imageType = StoreImageType.None)
     {
       string type = imageType.GetEnumDisplayName();
