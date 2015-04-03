@@ -27,7 +27,7 @@ namespace OnePeek.WebConsole.Modules
 
       Get["/reviews", true] = async (ctx, token) =>
       {
-        AppReviews reviews = await ratingEndpoint.GetReviews(Request.Query["id"], StoreType.WindowsPhone8, StoreCultureType.EN_US, StoreReviewSorting.Latest);
+        AppReviews reviews = await ratingEndpoint.GetReviews(Request.Query["id"], StoreType.WindowsPhone8, StoreCultureType.EN_US, StoreReviewSorting.Latest, Request.Query["prev"], Request.Query["next"]);
         return View["Reviews", reviews];
       };
     }

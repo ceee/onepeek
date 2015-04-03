@@ -28,18 +28,29 @@ namespace OnePeek.Api
 
 
 
-    internal static Uri GetWindowsPhoneReviewsUri(string appId, string culture, string orderBy)
+    internal static Uri GetWindowsPhoneReviewsUri(string appId, string culture, string orderBy, string prevPageMarkerId = null, string nextPageMarkerId = null)
     {
       culture = culture.Replace('_', '-');
       string country = culture.Split('-')[1];
-      return Uri(WINDOWSPHONE_REVIEWS_URI, appId, country, culture, orderBy);
+      string affix = String.Empty;
+
+      if (!String.IsNullOrWhiteSpace(prevPageMarkerId))
+      {
+        affix = "&beforeMarker=" + prevPageMarkerId;
+      }
+      else if (!String.IsNullOrWhiteSpace(nextPageMarkerId))
+      {
+        affix = "&afterMarker=" + nextPageMarkerId;
+      }
+
+      return Uri(WINDOWSPHONE_REVIEWS_URI + affix, appId, country, culture, orderBy);
     }
 
 
 
     private static Uri Uri(string template, params string[] replacements)
     {
-      string uriString = String.Format(template, replacements).ToLower();
+      string uriString = String.Format(template, replacements);
       return new Uri(uriString, UriKind.Absolute);
     }
   }

@@ -3,8 +3,14 @@
   Layout = "_Layout.cshtml";
 }
 
+@if (!String.IsNullOrWhiteSpace(Model.PrevPageMarkerId))
+{
 <a class="button" href="/reviews?id=@(Model.Id)&prev=@(Model.PrevPageMarkerId)">prev</a>
-<a class="button" href="/reviews?id=@(Model.Id)&prev=@(Model.NextPageMarkerId)">next</a>
+}
+@if (!String.IsNullOrWhiteSpace(Model.NextPageMarkerId))
+{
+<a class="button" href="/reviews?id=@(Model.Id)&next=@(Model.NextPageMarkerId)">next</a>
+}
 
 @foreach (var review in Model.Reviews)
 {

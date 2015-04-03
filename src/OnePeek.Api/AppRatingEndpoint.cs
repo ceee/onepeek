@@ -18,7 +18,7 @@ namespace OnePeek.Api
     /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
     /// <param name="sorting">Sorting criteria.</param>
     /// <returns></returns>
-    public async Task<AppReviews> GetReviews(string appId, StoreType store, StoreCultureType storeCulture, StoreReviewSorting sorting)
+    public async Task<AppReviews> GetReviews(string appId, StoreType store, StoreCultureType storeCulture, StoreReviewSorting sorting, string prevPageMarkerId = null, string nextPageMarkerId = null)
     {
       if (storeCulture == StoreCultureType.Unknown)
       {
@@ -26,7 +26,7 @@ namespace OnePeek.Api
       }
 
       string xml = await ApiHttpClient.Instance.Get(
-        EndpointUris.GetWindowsPhoneReviewsUri(appId, storeCulture.ToString(), sorting.ToString())
+        EndpointUris.GetWindowsPhoneReviewsUri(appId, storeCulture.ToString(), sorting.ToString(), prevPageMarkerId, nextPageMarkerId)
       );
 
       IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();

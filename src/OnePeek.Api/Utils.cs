@@ -19,8 +19,8 @@ namespace OnePeek.Api
         return null;
       }
 
-      Match match = new Regex(queryKey + @"=([A-Za-z0-9\-=]+)").Match(attr.Value);
-      return match.Success ? match.Groups[1].Value + "=" : null;
+      Match match = new Regex(queryKey + @"=([A-Za-z0-9\-\=]+)").Match(attr.Value);
+      return match.Success ? match.Groups[1].Value : null;
     }
   }
 }
