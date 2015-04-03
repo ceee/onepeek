@@ -1,0 +1,18 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+<form action="/meta" method="get">
+  <h3>META</h3>
+  <input type="text" name="id" value="2532ff45-aa3f-4aba-a266-ed7ec71d47bd" />
+  <input type="submit" value="submit" class="button" />
+</form>
+
+<br /><br />
+
+<form action="/reviews" method="get">
+  <h3>REVIEWS</h3>
+  <input type="text" name="id" value="2532ff45-aa3f-4aba-a266-ed7ec71d47bd" />
+  <input type="submit" value="submit" class="button" />
+</form>

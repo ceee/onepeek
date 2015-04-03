@@ -1,0 +1,32 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+<a class="button" href="/reviews?id=@(Model.Id)&prev=@(Model.PrevPageMarkerId)">prev</a>
+<a class="button" href="/reviews?id=@(Model.Id)&prev=@(Model.NextPageMarkerId)">next</a>
+
+@foreach (var review in Model.Reviews)
+{
+  <div class="review">
+    @for (var i = 0; i < review.Rating; i++)
+    {
+      @:*
+    }
+    <b>@review.Author</b>
+    <p>@review.Text</p>
+    <sub>@review.CreatedDate.ToString("dd. MMMM yyyy"), @review.Device (@review.AppVersion)</sub>
+  </div>
+  <hr />
+}
+
+<style>
+  .review 
+  {
+    padding: 1rem;
+  }
+  .review:nth-child(4n+1) 
+  {
+    background: #f7f7f7;
+  }
+</style>

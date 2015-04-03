@@ -1,0 +1,22 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+<html>
+<head>
+  <title>OnePeek</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="~/Assets/normalize.css" />
+  <link rel="stylesheet" href="~/Assets/foundation.min.css" />
+</head>
+<body>
+  <br /><br />
+  <div class="row">
+    <div class="large-12 columns">
+      @RenderBody()
+    </div>
+  </div>
+  <script src="~/Assets/jquery.js"></script>
+  <script src="~/Assets/foundation.min.js"></script>
+  <script>
+      $(document).foundation();
+  </script>
+</body>
+</html>
