@@ -62,6 +62,8 @@ namespace OnePeek.Api
         };
       });
 
+      result.IsEmpty = result.Reviews == null || !result.Reviews.Any();
+
       return result;
     }
   }

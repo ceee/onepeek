@@ -8,6 +8,8 @@ namespace OnePeek.Entities
   {
     public string Id { get; set; }
 
+    public bool IsEmpty { get; set; }
+
     public DateTime? StoreDataModifiedDate { get; set; }
 
     public StoreType StoreType { get; set; }
