@@ -100,6 +100,8 @@ namespace OnePeek.Api
 
     public async Task<Dictionary<StoreCultureType, IEnumerable<AppMetadata>>> GetMetadataForAllCultures(string appId, StoreType store)
     {
+      IEnumerable<StoreCultureType> cultures = Enum.GetValues(typeof(StoreCultureType)).Cast<StoreCultureType>();
+
       throw new NotImplementedException();
     }
   }

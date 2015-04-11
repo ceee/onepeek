@@ -47,3 +47,15 @@ _Is this the http://windows.microsoft.com/en-us/windows/worldwide full list? ...
     var output = JSON.stringify(cultures);
 
 4) Output is copied to `cultures-windows.json`
+
+5) Create StoreCultureType enum with:
+
+    var enumlist = "";
+    $.each(cultures, function (i, val)
+    {
+      enumlist += '\n/// <summary>\n' +
+        '/// ' + val.country + ' (' + val.language + ')\n' +
+        '/// </summary>\n' +
+        '[Display(Name = "' + val.country + ' (' + val.language + ')")]\n' +
+        val.id.replace('-', '_').replace('-', '_').toUpperCase() + ',';
+    });
