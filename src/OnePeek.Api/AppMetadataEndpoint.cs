@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 
 namespace OnePeek.Api
 {
@@ -98,11 +99,19 @@ namespace OnePeek.Api
 
 
 
-    public async Task<Dictionary<StoreCultureType, IEnumerable<AppMetadata>>> GetMetadataForAllCultures(string appId, StoreType store)
+    public async Task<IEnumerable<AppMetadata>> GetMetadataForAllCultures(string appId, StoreType store, CancellationToken ct, IProgress<DownloadProgressChangedEventArgs> progress)
     {
       IEnumerable<StoreCultureType> cultures = Enum.GetValues(typeof(StoreCultureType)).Cast<StoreCultureType>();
 
-      throw new NotImplementedException();
+      IEnumerable<Task<AppMetadata>> tasks = cultures.Select(culture =>
+      {
+        return GetMetadata(appId, store, culture);
+      });
+
+      return await Task.WhenAll(tasks).ConfigureAwait(false);
     }
   }
+
+
+  public class DownloadProgressChangedEventArgs : EventArgs { }
 }
