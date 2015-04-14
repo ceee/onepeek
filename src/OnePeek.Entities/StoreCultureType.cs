@@ -9,6 +9,10 @@ namespace OnePeek.Entities
     /// </summary>
     Unknown,
     /// <summary>
+    /// Summary of all cultures. Is only used by OnePeek, not by Microsoft
+    /// </summary>
+    All,
+    /// <summary>
     /// Angola (Português - Portugal)
     /// </summary>
     [Display(Name = "Angola (Português - Portugal)")]

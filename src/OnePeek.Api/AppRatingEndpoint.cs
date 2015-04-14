@@ -20,7 +20,7 @@ namespace OnePeek.Api
     /// <returns></returns>
     public async Task<AppReviews> GetReviews(string appId, StoreType store, StoreCultureType storeCulture, StoreReviewSorting sorting, string prevPageMarkerId = null, string nextPageMarkerId = null)
     {
-      if (storeCulture == StoreCultureType.Unknown)
+      if (storeCulture == StoreCultureType.Unknown || storeCulture == StoreCultureType.All)
       {
         throw new ArgumentException("Please provide a valid store culture");
       }

@@ -23,7 +23,7 @@ namespace OnePeek.Api
     /// <returns></returns>
     public async Task<AppMetadata> GetMetadata(string appId, StoreType store, StoreCultureType storeCulture)
     {
-      if (storeCulture == StoreCultureType.Unknown)
+      if (storeCulture == StoreCultureType.Unknown || storeCulture == StoreCultureType.All)
       {
         throw new ArgumentException("Please provide a valid store culture");
       }
@@ -71,6 +71,41 @@ namespace OnePeek.Api
 
 
     /// <summary>
+    /// Get app rating (count + average) in the specified culture.
+    /// </summary>
+    /// <param name="appId">The ID of the app. Can be found in the dev portal or the store URI.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="storeCulture">Culture of the query (returns location specific ratings).</param>
+    /// <returns></returns>
+    public async Task<AppRating> GetRating(string appId, StoreType store, StoreCultureType storeCulture)
+    {
+      if (storeCulture == StoreCultureType.Unknown || storeCulture == StoreCultureType.All)
+      {
+        throw new ArgumentException("Please provide a valid store culture");
+      }
+
+      string xml = await ApiHttpClient.Instance.Get(
+        EndpointUris.GetWindowsPhoneMetadataUri(appId, storeCulture.ToString())
+      );
+
+      IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
+
+      // create rating
+      AppRating result = new AppRating();
+      result.Culture = storeCulture;
+      result.RatingCount = Convert.ToInt32(xel.Get("userRatingCount"));
+      result.AverageRating = xel.GetFloat("averageUserRating");
+      if (Configuration.UseFiveStarSystem)
+      {
+        result.AverageRating = (float)(result.AverageRating * 0.5);
+      }
+
+      return result;
+    }
+
+
+
+    /// <summary>
     /// Creates an URI from an image urn (included in the AppImage POCO).
     /// </summary>
     /// <param name="urn">The urn (is part of the AppImage).</param>
@@ -101,11 +136,28 @@ namespace OnePeek.Api
 
     public async Task<IEnumerable<AppMetadata>> GetMetadataForAllCultures(string appId, StoreType store, CancellationToken ct, IProgress<DownloadProgressChangedEventArgs> progress)
     {
-      IEnumerable<StoreCultureType> cultures = Enum.GetValues(typeof(StoreCultureType)).Cast<StoreCultureType>();
+      IEnumerable<StoreCultureType> cultures = Enum.GetValues(typeof(StoreCultureType))
+        .Cast<StoreCultureType>()
+        .Where(x => x != StoreCultureType.All && x != StoreCultureType.Unknown);
 
       IEnumerable<Task<AppMetadata>> tasks = cultures.Select(culture =>
       {
         return GetMetadata(appId, store, culture);
+      });
+
+      return await Task.WhenAll(tasks).ConfigureAwait(false);
+    }
+
+
+    public async Task<IEnumerable<AppRating>> GetRatingsForAllCultures(string appId, StoreType store, CancellationToken ct, IProgress<DownloadProgressChangedEventArgs> progress)
+    {
+      IEnumerable<StoreCultureType> cultures = Enum.GetValues(typeof(StoreCultureType))
+        .Cast<StoreCultureType>()
+        .Where(x => x != StoreCultureType.All && x != StoreCultureType.Unknown);
+
+      IEnumerable<Task<AppRating>> tasks = cultures.Select(culture =>
+      {
+        return GetRating(appId, store, culture);
       });
 
       return await Task.WhenAll(tasks).ConfigureAwait(false);

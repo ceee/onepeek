@@ -6,6 +6,11 @@ namespace OnePeek.Entities
   public partial class AppRating
   {
     /// <summary>
+    /// Defines the culture where the rating applies to.
+    /// </summary>
+    public StoreCultureType Culture { get; set; }
+
+    /// <summary>
     /// Average rating of the app from 1-10 (can be changed to 1-5 with Configuration.UseFiveStarSystem).
     /// Is dependent on the current culture.
     /// </summary>
