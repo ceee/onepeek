@@ -2,6 +2,7 @@
 using OnePeek.Api;
 using OnePeek.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 
 namespace OnePeek.WebConsole.Modules
@@ -34,8 +35,29 @@ namespace OnePeek.WebConsole.Modules
 
       Get["/ratings", true] = async (ctx, token) =>
       {
+        var order = Request.Query["order"];
         IEnumerable<AppRating> ratings = await metaEndpoint.GetRatingsForAllCultures(Request.Query["id"], StoreType.WindowsPhone8, new System.Threading.CancellationTokenSource().Token, null);
-        return View["Ratings", new { Ratings = ratings }];
+
+        if (order == "rating")
+        {
+          ratings = ratings.OrderByDescending(x => x.AverageRating).ThenByDescending(x => x.RatingCount);
+        }
+        else if (order == "name")
+        {
+          ratings = ratings.OrderBy(x => x.Culture);
+        }
+        else
+        {
+          order = "count";
+          ratings = ratings.OrderByDescending(x => x.RatingCount);
+        }
+
+        return View["Ratings", new
+        {
+          Order = order,
+          Id = Request.Query["id"],
+          Ratings = ratings
+        }];
       };
     }
   }

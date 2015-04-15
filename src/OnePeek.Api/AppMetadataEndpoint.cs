@@ -84,23 +84,32 @@ namespace OnePeek.Api
         throw new ArgumentException("Please provide a valid store culture");
       }
 
-      string xml = await ApiHttpClient.Instance.Get(
-        EndpointUris.GetWindowsPhoneMetadataUri(appId, storeCulture.ToString())
-      );
-
-      IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
-
-      // create rating
       AppRating result = new AppRating();
       result.Culture = storeCulture;
-      result.RatingCount = Convert.ToInt32(xel.Get("userRatingCount"));
-      result.AverageRating = xel.GetFloat("averageUserRating");
-      if (Configuration.UseFiveStarSystem)
-      {
-        result.AverageRating = (float)(result.AverageRating * 0.5);
-      }
 
-      return result;
+      try
+      {
+        string xml = await ApiHttpClient.Instance.Get(
+          EndpointUris.GetWindowsPhoneMetadataUri(appId, storeCulture.ToString())
+        );
+
+        IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
+
+        // update rating
+        result.RatingCount = Convert.ToInt32(xel.Get("userRatingCount"));
+        result.AverageRating = xel.GetFloat("averageUserRating");
+        if (Configuration.UseFiveStarSystem)
+        {
+          result.AverageRating = (float)(result.AverageRating * 0.5);
+        }
+
+        return result;
+      }
+      catch
+      {
+        result.RatingNotAvailable = true;
+        return result;
+      }
     }
 
 

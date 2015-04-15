@@ -11,6 +11,11 @@ namespace OnePeek.Entities
     public StoreCultureType Culture { get; set; }
 
     /// <summary>
+    /// In case this is set to true, the Microsoft service didn't respond with a valid dataset to the requested culture
+    /// </summary>
+    public bool RatingNotAvailable { get; set; }
+
+    /// <summary>
     /// Average rating of the app from 1-10 (can be changed to 1-5 with Configuration.UseFiveStarSystem).
     /// Is dependent on the current culture.
     /// </summary>

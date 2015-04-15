@@ -3,17 +3,29 @@
   Layout = "_Layout.cshtml";
 }
 
+ORDER BY<br />
+<ul class="button-group radius">
+  <li><a href="/ratings?id=@(Model.Id)" class="button radius@(Model.Order == "count" ? "" : " secondary")">count</a></li>
+  <li><a href="/ratings?id=@(Model.Id)&order=rating" class="button radius@(Model.Order == "rating" ? "" : " secondary")">rating</a></li>
+  <li><a href="/ratings?id=@(Model.Id)&order=name" class="button radius@(Model.Order == "name" ? "" : " secondary")">name</a></li>
+</ul>
+
+<br />
+
 @foreach (var rating in Model.Ratings)
 {
+  string percentage = ((float)rating.AverageRating * 20f).ToString("0.00").Replace(",", ".");
   <div class="rating">
     <h3>@rating.Culture</h3>
-    <p><b>@rating.AverageRating</b> (@rating.RatingCount)</p>
+    <p><span class="label @(rating.RatingNotAvailable ? "alert" : "success")">@(rating.RatingNotAvailable ? "ERROR" : "OK")</span> <b>@rating.AverageRating</b> (@rating.RatingCount)</p>
   </div>
-  <hr />
+  
+  <div class="progress round secondary"><span class="meter" style="width:@(percentage)%;"></span></div>
 }
 
 <style>
-  .rating {
-
+  .progress {
+    background: white;
+    border: 1px solid #ddd;
   }
 </style>
