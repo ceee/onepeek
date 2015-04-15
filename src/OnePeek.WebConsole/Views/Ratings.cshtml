@@ -1,0 +1,19 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+@foreach (var rating in Model.Ratings)
+{
+  <div class="rating">
+    <h3>@rating.Culture</h3>
+    <p><b>@rating.AverageRating</b> (@rating.RatingCount)</p>
+  </div>
+  <hr />
+}
+
+<style>
+  .rating {
+
+  }
+</style>

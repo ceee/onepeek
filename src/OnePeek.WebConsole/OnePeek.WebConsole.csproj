@@ -79,6 +79,7 @@
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Meta.cshtml" />
     <Content Include="Views\Reviews.cshtml" />
+    <Content Include="Views\Ratings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

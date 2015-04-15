@@ -1,6 +1,7 @@
 ﻿using Nancy;
 using OnePeek.Api;
 using OnePeek.Entities;
+using System.Collections.Generic;
 using System.IO;
 
 namespace OnePeek.WebConsole.Modules
@@ -23,6 +24,13 @@ namespace OnePeek.WebConsole.Modules
       {      
         AppReviews reviews = await ratingEndpoint.GetReviews(ctx.id, StoreType.WindowsPhone8, StoreCultureType.EN_US, StoreReviewSorting.Latest);
         return Response.AsJson(reviews);
+      };
+
+
+      Get["/ratings/{id}", true] = async (ctx, token) =>
+      {
+        IEnumerable<AppRating> ratings = await metaEndpoint.GetRatingsForAllCultures(ctx.id, StoreType.WindowsPhone8, new System.Threading.CancellationTokenSource().Token, null);
+        return Response.AsJson(ratings);
       };
 
 
