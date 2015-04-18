@@ -47,6 +47,7 @@
     <Compile Include="StoreCultureType.cs" />
     <Compile Include="StoreImageType.cs" />
     <Compile Include="StoreReviewSorting.cs" />
+    <Compile Include="StoreSearchResults.cs" />
     <Compile Include="StoreType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

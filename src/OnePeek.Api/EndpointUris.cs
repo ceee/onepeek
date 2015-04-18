@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace OnePeek.Api
 {
@@ -9,6 +10,8 @@ namespace OnePeek.Api
     public const string WINDOWSPHONE_METADATA_URI = "http://marketplaceedgeservice.windowsphone.com/v9/catalog/apps/{0}?os=8.10.14219.0&cc={1}&lang={2}";
 
     public const string WINDOWSPHONE_REVIEWS_URI = "http://marketplaceedgeservice.windowsphone.com/v9/ratings/product/{0}/reviews?os=8.10.14219.0&cc={1}&lang={2}&dm=RM-1045_1012&chunksize=20&skuId=c1424839-be1e-40eb-8bc3-b2730db30b62&orderBy={3}";
+
+    public const string WINDOWSPHONE_SEARCH_URI = "http://marketplaceedgeservice.windowsphone.com/v9/catalog/apps?os=8.10.14219.0&cc={0}&lang={1}&dm=Virtual&chunkSize=50&q={2}";
 
 
 
@@ -44,6 +47,15 @@ namespace OnePeek.Api
       }
 
       return Uri(WINDOWSPHONE_REVIEWS_URI + affix, appId, country, culture, orderBy);
+    }
+
+
+
+    internal static Uri GetWindowsPhoneSearchUri(string query, string culture)
+    {
+      culture = culture.Replace('_', '-');
+      string country = culture.Split('-')[1];
+      return Uri(WINDOWSPHONE_SEARCH_URI, country, culture, WebUtility.HtmlEncode(query));
     }
 
 

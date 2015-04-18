@@ -15,6 +15,43 @@ namespace OnePeek.Api
   public class AppMetadataEndpoint : ApiBase
   {
     /// <summary>
+    /// Searches for apps based on a term (app name, keywords, ..)
+    /// </summary>
+    /// <param name="searchTerm">Search termn, is typically an app name or keyword (as used in the store interface).</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
+    /// <returns></returns>
+    public async Task<StoreSearchResults> Search(string searchTerm, StoreType store, StoreCultureType storeCulture)
+    {
+      if (storeCulture == StoreCultureType.Unknown || storeCulture == StoreCultureType.All)
+      {
+        throw new ArgumentException("Please provide a valid store culture");
+      }
+
+      if (String.IsNullOrWhiteSpace(searchTerm))
+      {
+        throw new ArgumentException("Search term has to contain at least a char.");
+      }
+
+      string xml = await ApiHttpClient.Instance.Get(
+        EndpointUris.GetWindowsPhoneSearchUri(searchTerm.Trim(), storeCulture.ToString())
+      );
+
+      IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
+
+      // create metadatas
+      StoreSearchResults result = Deserialize.Xml<StoreSearchResults>(xml);
+      result.StoreType = store;
+      result.StoreCultureType = storeCulture;
+
+      // create results
+      // TODO
+
+      return result;
+    }
+
+
+    /// <summary>
     /// Get app description, images, publisher, rating and more for an app in the specified culture.
     /// </summary>
     /// <param name="appId">The ID of the app. Can be found in the dev portal or the store URI.</param>
