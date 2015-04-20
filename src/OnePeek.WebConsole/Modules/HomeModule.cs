@@ -12,8 +12,7 @@ namespace OnePeek.WebConsole.Modules
     public HomeModule()
     {
       Configuration.UseFiveStarSystem = true;
-      AppRatingEndpoint ratingEndpoint = new AppRatingEndpoint();
-      AppMetadataEndpoint metaEndpoint = new AppMetadataEndpoint();
+      OnePeekApi api = new OnePeekApi();
 
       Get["/"] = ctx =>
       {
@@ -22,21 +21,21 @@ namespace OnePeek.WebConsole.Modules
 
       Get["/meta", true] = async (ctx, token) =>
       {
-        AppMetadata meta = await metaEndpoint.GetMetadata(Request.Query["id"], StoreType.WindowsPhone8, StoreCultureType.EN_US);
+        AppMetadata meta = await api.GetMetadata(Request.Query["id"], StoreType.WindowsPhone8, StoreCultureType.EN_US);
         return View["Meta", meta];
       };
 
 
       Get["/reviews", true] = async (ctx, token) =>
       {
-        AppReviews reviews = await ratingEndpoint.GetReviews(Request.Query["id"], StoreType.WindowsPhone8, StoreCultureType.EN_US, StoreReviewSorting.Latest, Request.Query["prev"], Request.Query["next"]);
+        AppReviews reviews = await api.GetReviews(Request.Query["id"], StoreType.WindowsPhone8, StoreCultureType.EN_US, StoreReviewSorting.Latest, Request.Query["prev"], Request.Query["next"]);
         return View["Reviews", reviews];
       };
 
       Get["/ratings", true] = async (ctx, token) =>
       {
         var order = Request.Query["order"];
-        IEnumerable<AppRating> ratings = await metaEndpoint.GetRatingsForAllCultures(Request.Query["id"], StoreType.WindowsPhone8, new System.Threading.CancellationTokenSource().Token, null);
+        IEnumerable<AppRating> ratings = await api.GetRatingsForAllCultures(Request.Query["id"], StoreType.WindowsPhone8, new System.Threading.CancellationTokenSource().Token, null);
 
         if (order == "rating")
         {
