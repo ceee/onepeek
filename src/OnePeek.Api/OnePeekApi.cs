@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace OnePeek.Api
 {
-  public class OnePeekApi : ApiBase
+  public class OnePeekApi : ApiBase, IOnePeekApi
   {
     /// <summary>
     /// Searches for apps based on a term (app name, keywords, ..)
@@ -238,6 +238,15 @@ namespace OnePeek.Api
 
 
 
+    /// <summary>
+    /// Gets metadata for an app for all available cultures
+    /// Warning: This method makes a request per culture (100+) which can take a while.
+    /// </summary>
+    /// <param name="appId">The ID of the app. Can be found in the dev portal or the store URI.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="ct">The canellation token.</param>
+    /// <param name="progress">The progress event gets triggered as soon as new data arrives.</param>
+    /// <returns></returns>
     public async Task<IEnumerable<AppMetadata>> GetMetadataForAllCultures(string appId, StoreType store, CancellationToken ct, IProgress<DownloadProgressChangedEventArgs> progress)
     {
       IEnumerable<StoreCultureType> cultures = Enum.GetValues(typeof(StoreCultureType))
@@ -253,6 +262,16 @@ namespace OnePeek.Api
     }
 
 
+
+    /// <summary>
+    /// Gets ratings for an app for all available cultures
+    /// Warning: This method makes a request per culture (100+) which can take a while.
+    /// </summary>
+    /// <param name="appId">The ID of the app. Can be found in the dev portal or the store URI.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="ct">The canellation token.</param>
+    /// <param name="progress">The progress event gets triggered as soon as new data arrives.</param>
+    /// <returns></returns>
     public async Task<IEnumerable<AppRating>> GetRatingsForAllCultures(string appId, StoreType store, CancellationToken ct, IProgress<DownloadProgressChangedEventArgs> progress)
     {
       IEnumerable<StoreCultureType> cultures = Enum.GetValues(typeof(StoreCultureType))
