@@ -43,8 +43,8 @@
   <ItemGroup>
     <Compile Include="ApiBase.cs" />
     <Compile Include="ApiHttpClient.cs" />
-    <Compile Include="AppMetadataEndpoint.cs" />
-    <Compile Include="AppRatingEndpoint.cs" />
+    <Compile Include="IOnePeekApi.cs" />
+    <Compile Include="OnePeekApi.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="EndpointUris.cs" />
     <Compile Include="Extensions\EntityExtensions.cs" />
