@@ -1,0 +1,23 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+@foreach (var result in Model.Results)
+{
+  <div class="result">
+    @result.Name
+  </div>
+  <hr />
+}
+
+<style>
+  .result 
+  {
+    padding: 1rem;
+  }
+  .result:nth-child(4n+1) 
+  {
+    background: #f7f7f7;
+  }
+</style>

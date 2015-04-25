@@ -3,24 +3,41 @@
   Layout = "_Layout.cshtml";
 }
 
-<form action="/meta" method="get">
-  <h3>META</h3>
-  <input type="text" name="id" value="2532ff45-aa3f-4aba-a266-ed7ec71d47bd" />
-  <input type="submit" value="submit" class="button" />
+<form id="apiquery" action="/meta" method="get">
+  <div class="large-12 columns">
+    <h3>API QUERY</h3>
+  </div>
+  <div class="large-4 columns">
+    <select id="apiquery-type">
+      <option value="meta">meta</option>
+      <option value="reviews">reviews</option>
+      <option value="ratings">ratings</option>
+    </select>
+  </div>
+  <div class="large-8 columns">
+    <input type="text" name="id" value="2532ff45-aa3f-4aba-a266-ed7ec71d47bd" />
+  </div>
+  <div class="large-12 columns">
+    <input type="submit" value="submit" class="button" />
+  </div>
 </form>
 
+<div style="clear:both;"></div>
 <br /><br />
 
-<form action="/reviews" method="get">
-  <h3>REVIEWS</h3>
-  <input type="text" name="id" value="2532ff45-aa3f-4aba-a266-ed7ec71d47bd" />
-  <input type="submit" value="submit" class="button" />
+<form id="apisearch" action="/search" method="get">
+  <div class="large-12 columns">
+    <h3>SEARCH</h3>
+    <input type="text" name="term" value="" placeholder="search term ..." />
+    <input type="submit" value="submit" class="button" />
+  </div>
 </form>
 
-<br /><br />
 
-<form action="/ratings" method="get">
-  <h3>RATINGS</h3>
-  <input type="text" name="id" value="2532ff45-aa3f-4aba-a266-ed7ec71d47bd" />
-  <input type="submit" value="submit" class="button" />
-</form>
+<script>
+  $('#apiquery').on('submit', function (e)
+  {
+    e.preventDefault();
+    $(this).off('submit').attr('action', '/' + $('#apiquery-type').val()).submit();
+  });
+</script>

@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="~/Assets/normalize.css" />
   <link rel="stylesheet" href="~/Assets/foundation.min.css" />
+  <script src="~/Assets/jquery.js"></script>
+  <script src="~/Assets/foundation.min.js"></script>
+  <script>
+      $(document).foundation();
+  </script>
 </head>
 <body>
   <br /><br />
   <div class="row">
     @RenderBody()
   </div>
-  <script src="~/Assets/jquery.js"></script>
-  <script src="~/Assets/foundation.min.js"></script>
-  <script>
-      $(document).foundation();
-  </script>
 </body>
 </html>

@@ -19,6 +19,7 @@ namespace OnePeek.WebConsole.Modules
         return View["Index"];
       };
 
+
       Get["/meta", true] = async (ctx, token) =>
       {
         AppMetadata meta = await api.GetMetadata(Request.Query["id"], StoreType.WindowsPhone8, StoreCultureType.EN_US);
@@ -31,6 +32,14 @@ namespace OnePeek.WebConsole.Modules
         AppReviews reviews = await api.GetReviews(Request.Query["id"], StoreType.WindowsPhone8, StoreCultureType.EN_US, StoreReviewSorting.Latest, Request.Query["prev"], Request.Query["next"]);
         return View["Reviews", reviews];
       };
+
+
+      Get["/search", true] = async (ctx, token) =>
+      {
+        StoreSearchResults result = await api.Search(Request.Query["term"], StoreType.WindowsPhone8, StoreCultureType.EN_US);
+        return View["Search", result];
+      };
+
 
       Get["/ratings", true] = async (ctx, token) =>
       {
