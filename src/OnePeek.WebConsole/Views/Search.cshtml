@@ -6,7 +6,9 @@
 @foreach (var result in Model.Results)
 {
   <div class="result">
-    @result.Name
+    <img src="/api/image/@(result.Images.Logo.Id).jpg" alt="@result.Name" style="float: left;" />
+    @result.Name<br />
+    Rating: <mark>@result.Rating.AverageRating</mark> (out of @result.Rating.RatingCount)
   </div>
   <hr />
 }
