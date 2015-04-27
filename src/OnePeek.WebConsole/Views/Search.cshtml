@@ -5,21 +5,29 @@
 
 @foreach (var result in Model.Results)
 {
-  <div class="result">
-    <img src="/api/image/@(result.Images.Logo.Id).jpg" alt="@result.Name" style="float: left;" />
-    @result.Name<br />
-    Rating: <mark>@result.Rating.AverageRating</mark> (out of @result.Rating.RatingCount)
-  </div>
+  <a href="/meta/?id=@result.Id" class="result">
+    <img src="/api/image/@(result.Images.Logo.Id).jpg" alt="@result.Name" class="result-image" />
+    <b>@result.Name</b><br />
+    Rating: @result.Rating.AverageRating (out of @result.Rating.RatingCount)
+  </a>
   <hr />
 }
 
 <style>
   .result 
   {
+    display: block;
+    color: black;
     padding: 1rem;
   }
   .result:nth-child(4n+1) 
   {
     background: #f7f7f7;
+  }
+  .result-image
+  {
+    float: left;
+    width: 50px;
+    margin-right: 10px;
   }
 </style>

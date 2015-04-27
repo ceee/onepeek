@@ -39,7 +39,7 @@ namespace OnePeek.Api
       IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
 
       // create metadatas
-      StoreSearchResults result = Deserialize.Xml<StoreSearchResults>(xml);
+      StoreSearchResults result = new StoreSearchResults();
       result.StoreType = store;
       result.StoreCultureType = storeCulture;
       result.Results = xel.Where(x => x.Name.LocalName == "entry").Select(x =>
@@ -53,7 +53,7 @@ namespace OnePeek.Api
           rating = rating * 0.5f;
         }
 
-        return new AppMetadata()
+        AppMetadata data = new AppMetadata()
         {
           Id = childs.Get("id").Split(':').Last(),
           Urn = childs.Get("id"),
@@ -62,8 +62,18 @@ namespace OnePeek.Api
           {
             AverageRating = rating,
             RatingCount = Convert.ToInt32(childs.Get("userRatingCount"))
+          },
+          Images = new AppMetadataImages()
+          {
+            Logo = new AppImage()
+            {
+              Rotation = 0,
+              Urn = childs.Get("image")
+            }
           }
         };
+
+        return data;
       });
       result.Count = result.Results.Count();
 
