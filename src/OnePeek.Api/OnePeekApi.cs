@@ -32,9 +32,9 @@ namespace OnePeek.Api
         throw new ArgumentException("Search term has to contain at least a char.");
       }
 
-      string xml = await ApiHttpClient.Instance.Get(
-        EndpointUris.GetWindowsPhoneSearchUri(searchTerm.Trim(), storeCulture.ToString())
-      );
+      Uri uri = EndpointUris.GetWindowsPhoneSearchUri(searchTerm.Trim(), storeCulture.ToString());
+
+      string xml = await ApiHttpClient.Instance.Get(uri);
 
       IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
 
@@ -42,9 +42,30 @@ namespace OnePeek.Api
       StoreSearchResults result = Deserialize.Xml<StoreSearchResults>(xml);
       result.StoreType = store;
       result.StoreCultureType = storeCulture;
+      result.Results = xel.Where(x => x.Name.LocalName == "entry").Select(x =>
+      {
+        IEnumerable<XElement> childs = x.Descendants();
 
-      // create results
-      // TODO
+        float rating = childs.GetFloat("averageUserRating");
+
+        if (Configuration.UseFiveStarSystem)
+        {
+          rating = rating * 0.5f;
+        }
+
+        return new AppMetadata()
+        {
+          Id = childs.Get("id").Split(':').Last(),
+          Urn = childs.Get("id"),
+          Name = childs.Get("title"),
+          Rating = new AppRating()
+          {
+            AverageRating = rating,
+            RatingCount = Convert.ToInt32(childs.Get("userRatingCount"))
+          }
+        };
+      });
+      result.Count = result.Results.Count();
 
       return result;
     }
