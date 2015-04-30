@@ -13,6 +13,9 @@ namespace OnePeek.Api
 
     public const string WINDOWSPHONE_SEARCH_URI = "http://marketplaceedgeservice.windowsphone.com/v9/catalog/apps?os=8.10.14219.0&cc={0}&lang={1}&dm=Virtual&chunkSize=50&q={2}";
 
+    // seems to use authentication :(
+    //public const string UNIVERSAL_SEARCH_URI = "https://storeedgefd.dsx.mp.microsoft.com/pages/searchAllResults?appVersion=2015.4.24.1&market={0}&locale={1}&query={2}&deviceType=w";
+
 
 
     internal static Uri GetWindowsPhoneMetadataUri(string appId, string culture)
