@@ -13,6 +13,8 @@ namespace OnePeek.Api
 
     public const string WINDOWSPHONE_SEARCH_URI = "http://marketplaceedgeservice.windowsphone.com/v9/catalog/apps?os=8.10.14219.0&cc={0}&lang={1}&dm=Virtual&chunkSize=50&q={2}";
 
+    public const string WINDOWSPHONE_SPOTLIGHT_URI = "http://cdn.marketplaceedgeservice.windowsphone.com/v9/catalog/hubs?os=8.10.14219.0&cc={0}&lang={1}&hw=520293381&dm=RM-1045_1012&oemId=NOKIA&moId=HUT-AT&hub={2}&cf=99-1";
+
     // seems to use authentication :(
     //public const string UNIVERSAL_SEARCH_URI = "https://storeedgefd.dsx.mp.microsoft.com/pages/searchAllResults?appVersion=2015.4.24.1&market={0}&locale={1}&query={2}&deviceType=w";
 
@@ -59,6 +61,17 @@ namespace OnePeek.Api
       culture = culture.Replace('_', '-');
       string country = culture.Split('-')[1];
       return Uri(WINDOWSPHONE_SEARCH_URI, country, culture, WebUtility.HtmlEncode(query));
+    }
+
+
+
+    internal static Uri GetWindowsPhoneSpotlightUri(string culture, string type)
+    {
+      // type should be games or apps
+
+      culture = culture.Replace('_', '-');
+      string country = culture.Split('-')[1];
+      return Uri(WINDOWSPHONE_SPOTLIGHT_URI, country, culture, type);
     }
 
 
