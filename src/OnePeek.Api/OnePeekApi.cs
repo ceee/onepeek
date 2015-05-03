@@ -82,6 +82,31 @@ namespace OnePeek.Api
 
 
     /// <summary>
+    /// Get spotlight entries for the current day in the specified culture
+    /// </summary>
+    /// <param name="spotlightType">Can either be apps or games. Both return approx. 20 new results per day.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
+    /// <returns></returns>
+    public async Task<StoreSearchResults> GetSpotlight(StoreSpotlightType spotlightType, StoreType store, StoreCultureType storeCulture)
+    {
+      if (storeCulture == StoreCultureType.Unknown || storeCulture == StoreCultureType.All)
+      {
+        throw new ArgumentException("Please provide a valid store culture");
+      }
+
+      Uri uri = EndpointUris.GetWindowsPhoneSpotlightUri(storeCulture.ToString(), spotlightType.GetEnumDisplayName());
+
+      string xml = await ApiHttpClient.Instance.Get(uri);
+
+      IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
+
+      StoreSearchResults result = new StoreSearchResults();
+      return result;
+    }
+
+
+    /// <summary>
     /// Get app description, images, publisher, rating and more for an app in the specified culture.
     /// </summary>
     /// <param name="appId">The ID of the app. Can be found in the dev portal or the store URI.</param>
