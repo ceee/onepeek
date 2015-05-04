@@ -184,3 +184,4 @@ Development/*.js
 # =========================
 src/OnePeek.sln.ide/*
 src/OnePeek.Console/
+AppData/
