@@ -14,9 +14,10 @@ namespace OnePeek.WebConsole.Modules
       Configuration.UseFiveStarSystem = true;
       OnePeekApi api = new OnePeekApi();
 
-      Get["/"] = ctx =>
+      Get["/", true] = async (ctx, token) =>
       {
-        return View["Index"];
+        StoreSearchResults result = await api.GetSpotlight(StoreSpotlightType.Apps, StoreType.WindowsPhone8, StoreCultureType.EN_US);
+        return View["Index", result];
       };
 
 
