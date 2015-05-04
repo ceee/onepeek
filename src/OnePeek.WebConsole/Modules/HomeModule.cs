@@ -16,8 +16,11 @@ namespace OnePeek.WebConsole.Modules
 
       Get["/", true] = async (ctx, token) =>
       {
-        StoreSearchResults result = await api.GetSpotlight(StoreSpotlightType.Apps, StoreType.WindowsPhone8, StoreCultureType.EN_US);
-        return View["Index", result];
+        StoreSpotlightResults result = await api.GetSpotlight(StoreSpotlightType.Apps, StoreType.WindowsPhone8, StoreCultureType.EN_US);
+        return View["Index", new
+        {
+          Spotlight = result
+        }];
       };
 
 

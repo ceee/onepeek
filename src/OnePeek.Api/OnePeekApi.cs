@@ -88,7 +88,7 @@ namespace OnePeek.Api
     /// <param name="store">The store where the app is published.</param>
     /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
     /// <returns></returns>
-    public async Task<StoreSearchResults> GetSpotlight(StoreSpotlightType spotlightType, StoreType store, StoreCultureType storeCulture)
+    public async Task<StoreSpotlightResults> GetSpotlight(StoreSpotlightType spotlightType, StoreType store, StoreCultureType storeCulture)
     {
       if (storeCulture == StoreCultureType.Unknown || storeCulture == StoreCultureType.All)
       {
@@ -101,8 +101,70 @@ namespace OnePeek.Api
 
       IEnumerable<XElement> xel = XDocument.Parse(xml).Elements().First().Descendants();
 
-      StoreSearchResults result = new StoreSearchResults();
+      StoreSpotlightResults result = new StoreSpotlightResults();
+      result.StoreCultureType = storeCulture;
+      result.StoreSpotlightType = spotlightType;
+      result.StoreType = store;
+      result.Results = xel.Where(x => x.Name.LocalName == "application").Select(x =>
+      {
+        IEnumerable<XElement> childs = x.Descendants();
+
+        float rating = childs.GetFloat("averageUserRating");
+
+        if (Configuration.UseFiveStarSystem)
+        {
+          rating = rating * 0.5f;
+        }
+
+        AppMetadata data = new AppMetadata()
+        {
+          Id = childs.Get("id").Split(':').Last(),
+          Urn = childs.Get("id"),
+          Name = childs.Get("title"),
+          Rating = new AppRating()
+          {
+            AverageRating = rating,
+            RatingCount = Convert.ToInt32(childs.Get("userRatingCount"))
+          },
+          Images = new AppMetadataImages()
+          {
+            Logo = new AppImage()
+            {
+              Rotation = 0,
+              Urn = childs.Get("image")
+            }
+          }
+        };
+
+        return data;
+      });
+      result.Count = result.Results.Count();
+
       return result;
+    }
+
+
+    /// <summary>
+    /// Get spotlight entries for the current day in the specified culture.
+    /// This only returns IDs for fast access.
+    /// </summary>
+    /// <param name="spotlightType">Can either be apps or games. Both return approx. 20 new results per day.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
+    /// <returns></returns>
+    public async Task<IEnumerable<string>> GetSpotlightIds(StoreSpotlightType spotlightType, StoreType store, StoreCultureType storeCulture)
+    {
+      if (storeCulture == StoreCultureType.Unknown || storeCulture == StoreCultureType.All)
+      {
+        throw new ArgumentException("Please provide a valid store culture");
+      }
+
+      Uri uri = EndpointUris.GetWindowsPhoneSpotlightUri(storeCulture.ToString(), spotlightType.GetEnumDisplayName());
+
+      string xml = await ApiHttpClient.Instance.Get(uri);
+
+      IEnumerable<string> ids = XDocument.Parse(xml).Elements().First().Descendants().Where(x => x.Name.LocalName == "application").Select(x => x.Descendants().Get("id").Split(':').Last());
+      return ids;
     }
 
 

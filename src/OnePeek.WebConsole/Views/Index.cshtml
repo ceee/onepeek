@@ -3,10 +3,6 @@
   Layout = "_Layout.cshtml";
 }
 
-<div class="spotlight">
-
-</div>
-
 <form id="apiquery" action="/meta" method="get">
   <div class="large-12 columns">
     <h3>API QUERY</h3>
@@ -37,6 +33,44 @@
   </div>
 </form>
 
+<div style="clear:both;"></div>
+<br /><br />
+
+<div class="large-12 columns">
+  <h3>SPOTLIGHT</h3>
+  <div class="spotlight">
+    @{ var i = 0; }
+    @foreach (var result in Model.Spotlight.Results)
+    {
+      <a href="/meta/?id=@result.Id" class="spotlight-item">
+        <img src="/api/image/@(result.Images.Logo.Id).jpg" alt="@result.Name" class="spotlight-image" />
+        <b>@result.Name</b>
+      </a>
+      @if (++i % 5 == 0 && i > 1)
+      {
+        <div style="clear:both;float:none;"></div>
+      }
+    }
+  </div>
+</div>
+
+
+
+<style>
+  .spotlight-item
+  {
+    display: inline-block;
+    width: 20%;
+    float: left;
+    padding: 5px;
+  }
+
+  .spotlight-image
+  {
+    display: block;
+    margin-bottom: 10px;
+  }
+</style>
 
 <script>
   $('#apiquery').on('submit', function (e)

@@ -48,6 +48,7 @@
     <Compile Include="StoreImageType.cs" />
     <Compile Include="StoreReviewSorting.cs" />
     <Compile Include="StoreSearchResults.cs" />
+    <Compile Include="StoreSpotlightResults.cs" />
     <Compile Include="StoreSpotlightType.cs" />
     <Compile Include="StoreType.cs" />
   </ItemGroup>
