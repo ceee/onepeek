@@ -37,7 +37,7 @@
 <br /><br />
 
 <div class="large-12 columns">
-  <h3>SPOTLIGHT</h3>
+  <h3>APPS SPOTLIGHT</h3>
   <div class="spotlight">
     @{ var i = 0; }
     @foreach (var result in Model.Spotlight.Results)
@@ -46,7 +46,7 @@
         <img src="/api/image/@(result.Images.Logo.Id).jpg" alt="@result.Name" class="spotlight-image" />
         <b>@result.Name</b>
       </a>
-      @if (++i % 5 == 0 && i > 1)
+      if (++i % 10 == 0 && i > 1)
       {
         <div style="clear:both;float:none;"></div>
       }
@@ -54,15 +54,46 @@
   </div>
 </div>
 
+<div style="clear:both;"></div>
+<br /><br />
 
+<div class="large-12 columns">
+  <h3>GAMES SPOTLIGHT</h3>
+  <div class="spotlight">
+    @{ i = 0; }
+    @foreach (var result in Model.SpotlightGames.Results)
+    {
+      <a href="/meta/?id=@result.Id" class="spotlight-item">
+        <img src="/api/image/@(result.Images.Logo.Id).jpg" alt="@result.Name" class="spotlight-image" />
+        <b>@result.Name</b>
+      </a>
+      if (++i % 10 == 0 && i > 1)
+      {
+        <div style="clear:both;float:none;"></div>
+      }
+    }
+  </div>
+</div>
+
+<div style="clear:both;float:none;"></div>
+<br /><br /><br /><br />
 
 <style>
   .spotlight-item
   {
     display: inline-block;
-    width: 20%;
+    width: 10%;
     float: left;
     padding: 5px;
+  }
+
+  .spotlight-item b
+  {
+    font-size: 12px;
+    display: block;
+    max-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .spotlight-image
