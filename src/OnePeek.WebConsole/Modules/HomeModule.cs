@@ -4,6 +4,8 @@ using OnePeek.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Threading;
+using System;
 
 namespace OnePeek.WebConsole.Modules
 {
@@ -19,11 +21,8 @@ namespace OnePeek.WebConsole.Modules
         StoreSpotlightResults apps = await api.GetSpotlight(StoreSpotlightType.Apps, StoreType.WindowsPhone8, StoreCultureType.EN_US);
         StoreSpotlightResults games = await api.GetSpotlight(StoreSpotlightType.Games, StoreType.WindowsPhone8, StoreCultureType.EN_US);
 
-        IEnumerable<string> appIds = await api.GetSpotlightIds(StoreSpotlightType.Apps, StoreType.WindowsPhone8, StoreCultureType.EN_US);
-
         return View["Index", new
         {
-          SpotlightIds = appIds,
           Spotlight = apps,
           SpotlightGames = games
         }];
@@ -48,6 +47,20 @@ namespace OnePeek.WebConsole.Modules
       {
         StoreSearchResults result = await api.Search(Request.Query["term"], StoreType.WindowsPhone8, StoreCultureType.EN_US);
         return View["Search", result];
+      };
+
+
+      Get["/spotlight", true] = async (ctx, token) =>
+      {
+        IEnumerable<StoreSpotlightIdResults> results = await api.GetSpotlightIdsForAllCultures(StoreSpotlightType.Apps, StoreType.WindowsPhone8, default(CancellationToken));
+
+        Dictionary<string, int> count = results
+          .SelectMany(x => x.Ids)
+          .GroupBy(x => x)
+          .OrderByDescending(x => x.Count())
+          .ToDictionary(x => x.Key, x => x.Count());
+
+        return View["Spotlight", count];
       };
 
 

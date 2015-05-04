@@ -1,0 +1,21 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+<br />
+
+@foreach (var kv in Model)
+{
+  <div class="rating">
+    <a href="/meta/?id=@kv.Key">@kv.Key</a>
+    <p>@kv.Value</p>
+  </div>
+}
+
+<style>
+  .progress {
+    background: white;
+    border: 1px solid #ddd;
+  }
+</style>

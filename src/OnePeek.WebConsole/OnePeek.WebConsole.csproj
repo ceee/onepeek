@@ -81,6 +81,7 @@
     <Content Include="Views\Reviews.cshtml" />
     <Content Include="Views\Ratings.cshtml" />
     <Content Include="Views\Search.cshtml" />
+    <Content Include="Views\Spotlight.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

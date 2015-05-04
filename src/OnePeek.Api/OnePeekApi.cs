@@ -152,7 +152,7 @@ namespace OnePeek.Api
     /// <param name="store">The store where the app is published.</param>
     /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
     /// <returns></returns>
-    public async Task<IEnumerable<string>> GetSpotlightIds(StoreSpotlightType spotlightType, StoreType store, StoreCultureType storeCulture)
+    public async Task<StoreSpotlightIdResults> GetSpotlightIds(StoreSpotlightType spotlightType, StoreType store, StoreCultureType storeCulture)
     {
       if (storeCulture == StoreCultureType.Unknown || storeCulture == StoreCultureType.All)
       {
@@ -161,10 +161,22 @@ namespace OnePeek.Api
 
       Uri uri = EndpointUris.GetWindowsPhoneSpotlightUri(storeCulture.ToString(), spotlightType.GetEnumDisplayName());
 
-      string xml = await ApiHttpClient.Instance.Get(uri);
+      try
+      {
+        string xml = await ApiHttpClient.Instance.Get(uri);
 
-      IEnumerable<string> ids = XDocument.Parse(xml).Elements().First().Descendants().Where(x => x.Name.LocalName == "application").Select(x => x.Descendants().Get("id").Split(':').Last());
-      return ids;
+        IEnumerable<string> ids = XDocument.Parse(xml).Elements().First().Descendants().Where(x => x.Name.LocalName == "application").Select(x => x.Descendants().Get("id").Split(':').Last());
+
+        return new StoreSpotlightIdResults()
+        {
+          StoreCultureType = storeCulture,
+          Ids = ids
+        };
+      }
+      catch
+      {
+        return null;
+      }
     }
 
 
@@ -402,6 +414,29 @@ namespace OnePeek.Api
       });
 
       return await Task.WhenAll(tasks).ConfigureAwait(false);
+    }
+
+
+
+    /// <summary>
+    /// Get spotlight entries for the current day in the specified culture.
+    /// This only returns IDs for fast access.
+    /// Warning: This method makes a request per culture (100+) which can take a while.
+    /// </summary>
+    /// <param name="spotlightType">Can either be apps or games. Both return approx. 20 new results per day.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="ct">The canellation token.</param>
+    /// <param name="progress">The progress event gets triggered as soon as new data arrives.</param>
+    /// <returns></returns>
+    public async Task<IEnumerable<StoreSpotlightIdResults>> GetSpotlightIdsForAllCultures(StoreSpotlightType spotlightType, StoreType store, CancellationToken ct, IProgress<DownloadProgressChangedEventArgs> progress = null)
+    {
+      IEnumerable<StoreCultureType> cultures = Enum.GetValues(typeof(StoreCultureType))
+        .Cast<StoreCultureType>()
+        .Where(x => x != StoreCultureType.All && x != StoreCultureType.Unknown);
+
+      IEnumerable<Task<StoreSpotlightIdResults>> tasks = cultures.Select(culture => GetSpotlightIds(spotlightType, store, culture));
+
+      return (await Task.WhenAll(tasks).ConfigureAwait(false)).Where(x => x != null);
     }
   }
 

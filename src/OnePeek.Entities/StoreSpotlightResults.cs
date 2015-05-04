@@ -33,4 +33,19 @@ namespace OnePeek.Entities
     /// </summary>
     public IEnumerable<AppMetadata> Results { get; set; }
   }
+
+
+  public partial class StoreSpotlightIdResults
+  {
+    /// <summary>
+    /// The culture is relevant for the review results,
+    /// as they are unique per country
+    /// </summary>
+    public StoreCultureType StoreCultureType { get; set; }
+
+    /// <summary>
+    /// List of result ids.
+    /// </summary>
+    public IEnumerable<string> Ids { get; set; }
+  }
 }
