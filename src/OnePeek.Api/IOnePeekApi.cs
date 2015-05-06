@@ -83,5 +83,36 @@ namespace OnePeek.Api
     /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
     /// <returns></returns>
     Task<StoreSearchResults> Search(string searchTerm, StoreType store, StoreCultureType storeCulture);
+
+    /// <summary>
+    /// Get spotlight entries for the current day in the specified culture
+    /// </summary>
+    /// <param name="spotlightType">Can either be apps or games. Both return approx. 20 new results per day.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
+    /// <returns></returns>
+    Task<StoreSpotlightResults> GetSpotlight(StoreSpotlightType spotlightType, StoreType store, StoreCultureType storeCulture);
+
+    /// <summary>
+    /// Get spotlight entries for the current day in the specified culture.
+    /// This only returns IDs for fast access.
+    /// </summary>
+    /// <param name="spotlightType">Can either be apps or games. Both return approx. 20 new results per day.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="storeCulture">Culture of the query (returns location specific metadata + ratings).</param>
+    /// <returns></returns>
+    Task<StoreSpotlightIdResults> GetSpotlightIds(StoreSpotlightType spotlightType, StoreType store, StoreCultureType storeCulture);
+
+    /// <summary>
+    /// Get spotlight entries for the current day in the specified culture.
+    /// This only returns IDs for fast access.
+    /// Warning: This method makes a request per culture (100+) which can take a while.
+    /// </summary>
+    /// <param name="spotlightType">Can either be apps or games. Both return approx. 20 new results per day.</param>
+    /// <param name="store">The store where the app is published.</param>
+    /// <param name="ct">The canellation token.</param>
+    /// <param name="progress">The progress event gets triggered as soon as new data arrives.</param>
+    /// <returns></returns>
+    Task<IEnumerable<StoreSpotlightIdResults>> GetSpotlightIdsForAllCultures(StoreSpotlightType spotlightType, StoreType store, CancellationToken ct, IProgress<DownloadProgressChangedEventArgs> progress = null);
   }
 }
