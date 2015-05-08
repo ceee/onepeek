@@ -40,8 +40,15 @@ namespace OnePeek.Api
     /// </summary>
     public async Task<string> Get(Uri uri)
     {
-      HttpResponseMessage responseMessage = await httpClient.GetAsync(uri);
-      return await responseMessage.Content.ReadAsStringAsync();
+      try
+      {
+        HttpResponseMessage responseMessage = await httpClient.GetAsync(uri);
+        return await responseMessage.Content.ReadAsStringAsync();
+      }
+      catch (HttpRequestException exc)
+      {
+        throw new OnePeekApiException(exc.Message, exc);
+      }
     }
 
 
@@ -50,8 +57,15 @@ namespace OnePeek.Api
     /// </summary>
     public async Task<Stream> GetStream(Uri uri)
     {
-      HttpResponseMessage responseMessage = await httpClient.GetAsync(uri);
-      return await responseMessage.Content.ReadAsStreamAsync();
+      try
+      {
+        HttpResponseMessage responseMessage = await httpClient.GetAsync(uri);
+        return await responseMessage.Content.ReadAsStreamAsync();
+      }
+      catch (HttpRequestException exc)
+      {
+        throw new OnePeekApiException(exc.Message, exc);
+      }
     }
 
 
