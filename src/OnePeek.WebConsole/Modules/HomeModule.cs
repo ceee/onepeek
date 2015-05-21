@@ -87,7 +87,9 @@ namespace OnePeek.WebConsole.Modules
         {
           Order = order,
           Id = Request.Query["id"],
-          Ratings = ratings
+          Ratings = ratings,
+          WorldwideRating = ratings.Where(x => !x.RatingNotAvailable && x.RatingCount > 0).Average(x => x.AverageRating),
+          WorldwideCount = ratings.Sum(x => x.RatingCount)
         }];
       };
     }

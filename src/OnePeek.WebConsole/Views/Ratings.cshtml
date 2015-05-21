@@ -1,4 +1,5 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+﻿@using System.Linq
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
 @{
   Layout = "_Layout.cshtml";
 }
@@ -12,9 +13,20 @@ ORDER BY<br />
 
 <br />
 
+<div class="rating">
+  <h3>Worldwide</h3>
+  <p><span class="label success">OK</span> <b>@Model.WorldwideRating</b> (@Model.WorldwideCount)</p>
+</div>
+
+@{
+  string percentage = ((float)Model.WorldwideRating * 20f).ToString("0.00").Replace(",", ".");
+}
+
+<div class="progress round secondary"><span class="meter" style="width:@(percentage)%;"></span></div>
+
 @foreach (var rating in Model.Ratings)
 {
-  string percentage = ((float)rating.AverageRating * 20f).ToString("0.00").Replace(",", ".");
+  percentage = ((float)rating.AverageRating * 20f).ToString("0.00").Replace(",", ".");
   <div class="rating">
     <h3>@rating.Culture</h3>
     <p><span class="label @(rating.RatingNotAvailable ? "alert" : "success")">@(rating.RatingNotAvailable ? "ERROR" : "OK")</span> <b>@rating.AverageRating</b> (@rating.RatingCount)</p>

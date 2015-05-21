@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace OnePeek.Api
 {
-  public class OnePeekApi : ApiBase, IOnePeekApi
+  public class OnePeekApi : IOnePeekApi
   {
     /// <summary>
     /// Searches for apps based on a term (app name, keywords, ..)
